@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useState } from "react";
-import ProgressBar from "react-bootstrap/ProgressBar";
+import "./Enneagram.scss";
 import EnneagramItem from "./EnneagramItem";
 
 interface EnneagramProp {
@@ -152,24 +152,45 @@ const Enneagram: React.FC<EnneagramProp> = ({ onSubmit }) => {
     });
   };
 
-  return (
-    <div>
-      <ProgressBar
-        className="mb-3"
-        now={((curPage + 1) / TOTAL_PAGE) * 100}
-        label={`${curPage + 1} / ${TOTAL_PAGE}`}
-      />
+  const answeredCount = answerList.filter(a => a !== undefined && a !== null).length;
+  const progressPercent = Math.round((answeredCount / questionList.length) * 100);
 
-      {questionList
-        .slice(curPage * COUNT_PER_PAGE, curPage * COUNT_PER_PAGE + curCount)
-        .map((e, index) => (
-          <EnneagramItem
-            key={curPage * COUNT_PER_PAGE + index}
-            index={curPage * COUNT_PER_PAGE + index}
-            question={e}
-            onClickAnswer={onClickAnswer}
+  return (
+    <div className="enneagram-survey">
+      {/* Sticky Progress Section */}
+      <div className="survey-progress-wrapper">
+        <div className="progress-info">
+          <div className="progress-meta">
+            <span className="section-indicator">
+              섹션 {curPage + 1} / {TOTAL_PAGE}
+            </span>
+            <span className="question-count">
+              진행 문항 <strong>{answeredCount}</strong> / {questionList.length}
+            </span>
+          </div>
+          <span className="percent-badge">{progressPercent}%</span>
+        </div>
+        <div className="custom-progress-track">
+          <div
+            className="custom-progress-bar"
+            style={{ width: `${Math.max(progressPercent, 2)}%` }}
           />
-        ))}
+        </div>
+      </div>
+
+      {/* Question Items */}
+      <div className="questions-container">
+        {questionList
+          .slice(curPage * COUNT_PER_PAGE, curPage * COUNT_PER_PAGE + curCount)
+          .map((e, index) => (
+            <EnneagramItem
+              key={curPage * COUNT_PER_PAGE + index}
+              index={curPage * COUNT_PER_PAGE + index}
+              question={e}
+              onClickAnswer={onClickAnswer}
+            />
+          ))}
+      </div>
     </div>
   );
 };

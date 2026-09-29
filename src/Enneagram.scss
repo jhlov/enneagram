@@ -1,0 +1,136 @@
+.enneagram-survey {
+  animation: surveyFadeIn 0.4s ease-out forwards;
+}
+
+/* Sticky Progress Bar */
+.survey-progress-wrapper {
+  position: sticky;
+  top: 72px; /* Just below header */
+  z-index: 90;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--surface-border);
+  border-radius: var(--radius-md);
+  padding: 16px 20px;
+  margin-bottom: 28px;
+  box-shadow: var(--shadow-sm);
+  transition: all 0.3s ease;
+}
+
+.progress-info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.progress-meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.section-indicator {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--primary);
+  background: var(--primary-light);
+  padding: 3px 10px;
+  border-radius: var(--radius-full);
+}
+
+.question-count {
+  font-size: 13.5px;
+  color: var(--text-secondary);
+
+  strong {
+    color: var(--text-main);
+    font-weight: 700;
+  }
+}
+
+.percent-badge {
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-size: 14px;
+  font-weight: 800;
+  color: var(--primary);
+}
+
+/* Custom Progress Gauge */
+.custom-progress-track {
+  width: 100%;
+  height: 8px;
+  background: #e2e8f0;
+  border-radius: var(--radius-full);
+  overflow: hidden;
+  position: relative;
+}
+
+.custom-progress-bar {
+  height: 100%;
+  background: var(--primary-gradient);
+  border-radius: var(--radius-full);
+  transition: width 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(255, 255, 255, 0.4) 50%,
+      rgba(255, 255, 255, 0) 100%
+    );
+    animation: shimmer 2s infinite;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes surveyFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 640px) {
+  .survey-progress-wrapper {
+    top: 64px;
+    padding: 12px 16px;
+    margin-bottom: 20px;
+  }
+
+  .progress-meta {
+    gap: 8px;
+  }
+
+  .section-indicator {
+    font-size: 12px;
+  }
+
+  .question-count {
+    font-size: 12.5px;
+  }
+
+  .percent-badge {
+    font-size: 13px;
+  }
+}
