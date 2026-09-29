@@ -94,10 +94,82 @@
   text-align: left;
 }
 
+/* Featured Large Character Illustration (Above Card) */
+.featured-illust-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 28px;
+}
+
+.featured-illust-frame {
+  position: relative;
+  width: 280px;
+  height: 280px;
+  border-radius: 36px;
+  overflow: hidden;
+  box-shadow: 0 24px 60px -12px rgba(99, 102, 241, 0.35), 0 0 0 1px rgba(255, 255, 255, 0.9) inset;
+  border: 4px solid #ffffff;
+  background: #f8fafc;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+
+  &:hover {
+    transform: translateY(-6px) scale(1.02);
+    box-shadow: 0 32px 70px -15px rgba(99, 102, 241, 0.45);
+
+    .featured-illust-img {
+      transform: scale(1.05);
+    }
+  }
+}
+
+.featured-illust-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.illust-type-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 16px;
+  padding: 8px 20px;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--surface-border);
+  border-radius: var(--radius-full);
+  box-shadow: var(--shadow-sm);
+
+  .pill-badge {
+    padding: 3px 10px;
+    background: var(--primary-gradient);
+    color: #ffffff;
+    border-radius: var(--radius-full);
+    font-size: 12px;
+    font-weight: 800;
+    font-family: "Plus Jakarta Sans", sans-serif;
+  }
+
+  .pill-name {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--text-main);
+  }
+
+  .pill-english {
+    font-size: 13.5px;
+    color: var(--text-muted);
+    font-family: "Plus Jakarta Sans", sans-serif;
+  }
+}
+
 .card-top-row {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
   flex-wrap: wrap;
   gap: 12px;
   margin-bottom: 20px;
@@ -290,6 +362,16 @@
   font-family: "Plus Jakarta Sans", sans-serif;
 }
 
+.ranking-thumb {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  object-fit: cover;
+  border: 1.5px solid #e2e8f0;
+  flex-shrink: 0;
+  background: #f8fafc;
+}
+
 .ranking-body {
   flex: 1;
 }
@@ -442,6 +524,16 @@
 
   .profile-card {
     padding: 24px 18px;
+  }
+
+  .featured-illust-frame {
+    width: 220px;
+    height: 220px;
+    border-radius: 28px;
+  }
+
+  .card-top-row {
+    justify-content: center;
   }
 
   .feature-grid {

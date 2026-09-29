@@ -308,10 +308,26 @@ const Result: React.FC<ResultProp> = ({ scoreList, isLoading = false, onRestart 
         <p className="result-tagline">{primaryTypeInfo.tagline}</p>
       </div>
 
+      {/* Large Featured Character Illustration (Above Card) */}
+      <div className="featured-illust-container">
+        <div className="featured-illust-frame">
+          <img
+            src={`${process.env.PUBLIC_URL}/images/types/type${primaryTypeInfo.number}.jpg`}
+            alt={primaryTypeInfo.name}
+            className="featured-illust-img"
+          />
+          <div className="illust-ambient-glow" />
+        </div>
+        <div className="illust-type-pill">
+          <span className="pill-badge">Type {primaryTypeInfo.number}</span>
+          <span className="pill-name">{primaryTypeInfo.name}</span>
+          <span className="pill-english">{primaryTypeInfo.english}</span>
+        </div>
+      </div>
+
       {/* Main Profile Card */}
       <div className="profile-card">
         <div className="card-top-row">
-          <div className="type-badge-large">Type {primaryTypeInfo.number}</div>
           <div className="tag-list">
             {primaryTypeInfo.tags.map((tag, idx) => (
               <span key={idx} className="tag-chip">{tag}</span>
@@ -363,6 +379,11 @@ const Result: React.FC<ResultProp> = ({ scoreList, isLoading = false, onRestart 
                 <div className="ranking-rank">
                   {idx === 0 ? "🥇" : idx === 1 ? "🥈" : idx === 2 ? "🥉" : `${idx + 1}`}
                 </div>
+                <img
+                  src={`${process.env.PUBLIC_URL}/images/types/type${item.typeNumber}.jpg`}
+                  alt={item.name}
+                  className="ranking-thumb"
+                />
                 <div className="ranking-body">
                   <div className="ranking-header">
                     <span className="ranking-type-name">
